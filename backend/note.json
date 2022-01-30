@@ -1,0 +1,58 @@
+[
+{
+    "model": "api.note",
+    "pk": 1,
+    "fields": {
+        "title": "The official home of the Python Programming Language",
+        "text": "Python is a programming language that lets you work more quickly and integrate your systems more effectively.\r\nYou can learn to use Python and see almost immediate gains in productivity and lower maintenance costs.",
+        "author": 1,
+        "created_at": "2021-11-29T06:42:37.172Z",
+        "updated_at": "2021-11-30T13:10:34.588Z",
+        "image": "news/python-native.png",
+        "slug": "the-official-home-of-the-python-programming-language",
+        "url": "https://www.python.org"
+    }
+},
+{
+    "model": "api.note",
+    "pk": 2,
+    "fields": {
+        "title": "Django на русском",
+        "text": "Django - это веб-фреймворк Python высокого уровня, который способствует быстрой разработке и чистому, прагматичному дизайну. Созданный опытными разработчиками, он берет на себя большую часть хлопот веб-разработки, поэтому вы можете сосредоточиться на написании своего приложения, не изобретая велосипед. Это бесплатно и с открытым исходным кодом. Вся информация о Django на русском языке на нашем сайте.",
+        "author": 1,
+        "created_at": "2021-11-29T06:43:31.022Z",
+        "updated_at": "2021-11-30T13:10:55.778Z",
+        "image": "news/python-django.png",
+        "slug": "django-na-russkom",
+        "url": "https://djangodoc.ru"
+    }
+},
+{
+    "model": "api.note",
+    "pk": 3,
+    "fields": {
+        "title": "Django REST Framework: REST API на Python с нуля",
+        "text": "Django REST framework is a powerful and flexible toolkit for building Web APIs.\r\n\r\nSome reasons you might want to use REST framework:\r\n\r\nThe Web browsable API is a huge usability win for your developers.\r\nAuthentication policies including packages for OAuth1a and OAuth2.\r\nSerialization that supports both ORM and non-ORM data sources.\r\nCustomizable all the way down - just use regular function-based views if you don't need the more powerful features.\r\nExtensive documentation, and great community support.\r\nUsed and trusted by internationally recognised companies including Mozilla, Red Hat, Heroku, and Eventbrite.",
+        "author": 2,
+        "created_at": "2021-11-29T06:43:59.212Z",
+        "updated_at": "2021-11-30T13:16:19.328Z",
+        "image": "news/drf-mini.png",
+        "slug": "django-rest-framework-rest-api-na-python-s-nulya",
+        "url": "https://www.django-rest-framework.org"
+    }
+},
+{
+    "model": "api.note",
+    "pk": 4,
+    "fields": {
+        "title": "React. JavaScript-библиотека для создания пользовательских интерфейсов",
+        "text": "React - это библиотека JavaScript, которая используется для создания пользовательского интерфейса. React был создан компанией Facebook, а первый релиз библиотеки увидел свет в марте 2013 года. Текущей версий на данный момент (октябрь 2020 года) является версия React v17.0.\r\n\r\nПервоначально React предназначался для веба, для создания веб-сайтов, однако позже появилась платформа React Native, которая уже предназначалась для мобильных устройств.\r\n\r\nReact представляется идеальный инструмент для создания масштабируемых веб-приложений (в данном случае речь идет о фронтенде), особенно в тех ситуациях, когда приложение представляет SPA (одностраничное приложение).\r\n\r\nReact относительно прост в освоении, имеет понятный и лаконичный синтаксис.",
+        "author": 2,
+        "created_at": "2021-11-29T06:53:50.182Z",
+        "updated_at": "2021-11-30T13:27:10.218Z",
+        "image": "news/react.png",
+        "slug": "react-javascript-biblioteka-dlya-sozdaniya-polzovatelskih-interfejsov",
+        "url": "https://ru.reactjs.org"
+    }
+}
+]

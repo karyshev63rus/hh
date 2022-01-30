@@ -1,0 +1,16 @@
+stages:
+  - deploy
+deploy-job:
+  stage: deploy
+  script:
+    - echo "Deploying application..."
+    - rsync --recursive --exclude ".git*" $CI_PROJECT_DIR/ /home/karyshev63rus/hh
+    - echo "BEGIN DEPLOY"
+    - cd /home/karyshev63rus/hh/
+    - docker-compose -f docker-compose.prod.yml stop
+    - docker-compose -f docker-compose.prod.yml down
+    - docker-compose -f docker-compose.prod.yml up -d --build
+    - docker-compose -f docker-compose.prod.yml exec -T backend python manage.py migrate --noinput
+    - docker-compose -f docker-compose.prod.yml exec -T backend python manage.py collectstatic --noinput
+    - ls /home/karyshev63rus/hh/backend/nginx/certbot/conf/accounts/
+    - echo "END DEPLOY"

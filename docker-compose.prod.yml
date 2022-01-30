@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+
+  frontend_nginx:
+    restart: unless-stopped
+    build:
+      dockerfile: Dockerfile.prod
+      context: ./frontend
+    container_name: frontend_nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./backend/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - static_volume:/home/app/backend/django_static
+      - media_volume:/home/app/backend/media
+      - ./backend/nginx/certbot/conf:/etc/letsencrypt
+      - ./backend/nginx/certbot/www:/var/www/certbot
+    depends_on:
+      - backend
+  
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    container_name: certbot
+    volumes:
+      - ./backend/nginx/certbot/conf:/etc/letsencrypt
+      - ./backend/nginx/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while:; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  backend:
+    restart: unless-stopped
+    build: ./backend
+    container_name: backend
+    command: >
+      bash -c 'while !</dev/tcp/db/5432; do sleep 1; done;  gunicorn
+      config.wsgi:application --bind 0.0.0.0:8000'
+    expose:
+      - 8000
+    env_file:
+      - ./backend/config/.env.prod
+    volumes:
+      - ./backend:/home/app/backend
+      - static_volume:/home/app/backend/django_static
+      - media_volume:/home/app/backend/media
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine
+    container_name: db
+    ports:
+      - '5432:5432'
+    env_file:
+      - ./backend/config/.env.prod
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db: null
+  static_volume: null
+  media_volume: null
