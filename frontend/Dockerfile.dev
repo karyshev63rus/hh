@@ -1,0 +1,13 @@
+# pull oficial base image
+FROM node:14.18.1-alpine
+
+# create directory for the app
+WORKDIR /home/app/frontend
+
+# install dependencies
+COPY package*.json ./
+
+RUN npm install
+
+# copy project
+COPY . .

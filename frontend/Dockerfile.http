@@ -1,0 +1,26 @@
+# BUILDER #
+# pull ofirical base image#
+FROM node:14.18.1-alpine as build-stage
+
+# create directore for this app
+WORKDIR /home/app/frontend
+
+# install dependencies
+COPY package*.json ./
+RUN npm install
+
+# copy project
+COPY . .
+
+# change address for requests to backend
+RUN sed -i 's!http://localhost:8000!http://docent63.ru.com!g' ./src/services/instance.js
+
+# build project
+RUN npm run build
+
+# FINAL #
+# pull oficial base image
+FROM nginx:stable-alpine
+
+# copy build
+COPY --from=build-stage /home/app/frontend/build /home/app/frontend/build
